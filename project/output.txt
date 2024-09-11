@@ -1,0 +1,1 @@
+spawned 0 vehicles and 112 walkers, press Ctrl+C to exit.
