@@ -191,6 +191,7 @@ class ScenarioRunner(object):
         ldv = toml.load(f"../hyperparams/{args.lidar_params}")['lidar']
         cdv = toml.load(f"../hyperparams/{args.lidar_params}")['camera']
         self.CAMERA_HEIGHT_POS = ldv['GLOBAL_HEIGHT_POS']
+        self.LIDAR_HEIGHT_POS = ldv['GLOBAL_HEIGHT_POS']
 
         for p in range(ldv["sets"]):
             self.LIDAR_PATH.append(os.path.join(
@@ -405,7 +406,7 @@ class ScenarioRunner(object):
         lidar_bp = self.create_lidar(64.0, 1)
 
         lidar_transform = carla.Transform(
-            carla.Location(x=0.0, y=0.0, z=LIDAR_HEIGHT_POS)
+            carla.Location(x=0.0, y=0.0, z=self.LIDAR_HEIGHT_POS)
         )
         self.lidar_to_car_transform = lidar_transform
 
@@ -1475,7 +1476,7 @@ class ScenarioRunner(object):
             save_groundplanes(
                 groundplane_fname,
                 self.primary_vehicle.get_transform(),
-                LIDAR_HEIGHT_POS,
+                self.LIDAR_HEIGHT_POS,
             )
 
             save_kitti_data(kitti_fname, datapoints)
@@ -1486,14 +1487,14 @@ class ScenarioRunner(object):
                 point_cloud = points[beam]
 
                 lidar_fname = self.LIDAR_BEAM_PATH.format(self.split, self.save_no, beam)
-                save_lidar_data(lidar_fname, point_cloud, LIDAR_HEIGHT_POS, "bin")
+                save_lidar_data(lidar_fname, point_cloud, self.LIDAR_HEIGHT_POS, "bin")
 
     def _save_training_files(self, data, datapoints, point_cloud, lidar_tags, i=None):
         # if CarlaDataProvider.is_sync_mode():
 
         # if i is not None:
         #     lidar_fname = self.LIDAR_PATH.format(self.save_no*10+i)
-        #     save_lidar_data(lidar_fname, point_cloud, LIDAR_HEIGHT_POS, "bin")
+        #     save_lidar_data(lidar_fname, point_cloud, self.LIDAR_HEIGHT_POS, "bin")
         #     # save_lidarseg_tags(lidarseg_fname, lidar_tags, "bin")
         #     return
         if len(datapoints) > 0:
@@ -1531,7 +1532,7 @@ class ScenarioRunner(object):
             save_groundplanes(
                 groundplane_fname,
                 self.primary_vehicle.get_transform(),
-                LIDAR_HEIGHT_POS)
+                self.LIDAR_HEIGHT_POS)
 
             save_ref_files(self.OUTPUT_FOLDER, self.save_no)
             save_kitti_data(kitti_fname, datapoints)
@@ -1548,7 +1549,7 @@ class ScenarioRunner(object):
                 data["points"], data["depth"], data["image"] = None, None, None, None, None, None, None, None, None
 
             for i_f in range(self.lidar.sets):
-                save_lidar_data(lidar_frame[i_f], point_cloud[i_f], LIDAR_HEIGHT_POS, "bin")
+                save_lidar_data(lidar_frame[i_f], point_cloud[i_f], self.LIDAR_HEIGHT_POS, "bin")
                 save_lidarseg_tags(lidarseg_frame[i_f], lidar_tags[i_f], "bin")
 
             save_calibration_matrices(calib_filename, self._intrinsic, self._extrinsic)

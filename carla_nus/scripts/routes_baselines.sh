@@ -11,7 +11,7 @@ while IFS= read -r line; do
   --lidar-params ../hyperparams/base.toml \
   --hyperparams ../hyperparams/base.toml \
   --split training \
-  --full_round &>> ../logs/det_6x60.out
+  --full_round &>> ../logs/base.out
 done < ../scripts/place3d_routes.txt
 
 cd ../scripts
