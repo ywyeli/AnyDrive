@@ -846,27 +846,27 @@ class ScenarioRunner(object):
         scale = Scale(x=-1)
         return np.dot(matrix, self.create_matrix(translation, rotation, scale))
 
-    def get_camera_to_car_transform_matrix(self):
-        print("function 'get_camera_to_car_transform_matrix' in 'scenario_runner.py' should not be called, please check the usage")
-        vehicle_transform = self.ego_vehicles[0].get_transform()
+    # def get_camera_to_car_transform_matrix(self):
+    #     print("function 'get_camera_to_car_transform_matrix' in 'scenario_runner.py' should not be called, please check the usage")
+    #     vehicle_transform = self.ego_vehicles[0].get_transform()
+    #
+    #     translation = Translation(CAMERA_POS_X, CAMERA_POS_Y, CAMERA_POS_Z)
+    #     rotation = Rotation(CAMERA_ROT_PITCH, CAMERA_ROT_YAW, CAMERA_ROT_ROLL)
+    #     scale = Scale()
+    #
+    #     initial_pos_matrix = self.create_matrix(translation, rotation, scale)
+    #     unreal_transformed_matrix = self.to_unreal_matrix(initial_pos_matrix)
+    #     return unreal_transformed_matrix
 
-        translation = Translation(CAMERA_POS_X, CAMERA_POS_Y, CAMERA_POS_Z)
-        rotation = Rotation(CAMERA_ROT_PITCH, CAMERA_ROT_YAW, CAMERA_ROT_ROLL)
-        scale = Scale()
-
-        initial_pos_matrix = self.create_matrix(translation, rotation, scale)
-        unreal_transformed_matrix = self.to_unreal_matrix(initial_pos_matrix)
-        return unreal_transformed_matrix
-
-    def lidar_to_car_transform_matrix(self):
-        print("function 'lidar_to_car_transform_matrix' in 'scenario_runner.py' should not be called, please check the usage")
-        translation = Translation(LIDAR_POS_X, LIDAR_POS_Y, LIDAR_POS_Z)
-        rotation = Rotation(LIDAR_ROT_PITCH, LIDAR_ROT_YAW, LIDAR_ROT_ROLL)
-        scale = Scale()
-
-        initial_pos_matrix = self.create_matrix(translation, rotation, scale)
-        converter = self.create_matrix(Translation(), Rotation(yaw=90), Scale(z=-1))
-        return np.dot(initial_pos_matrix, converter)
+    # def lidar_to_car_transform_matrix(self):
+    #     print("function 'lidar_to_car_transform_matrix' in 'scenario_runner.py' should not be called, please check the usage")
+    #     translation = Translation(LIDAR_POS_X, LIDAR_POS_Y, LIDAR_POS_Z)
+    #     rotation = Rotation(LIDAR_ROT_PITCH, LIDAR_ROT_YAW, LIDAR_ROT_ROLL)
+    #     scale = Scale()
+    #
+    #     initial_pos_matrix = self.create_matrix(translation, rotation, scale)
+    #     converter = self.create_matrix(Translation(), Rotation(yaw=90), Scale(z=-1))
+    #     return np.dot(initial_pos_matrix, converter)
 
     def create_matrix(self, location, rotation, scale):
         matrix = np.identity(4)

@@ -13,6 +13,7 @@ upper_fov = 10.0
 sets = 1
 num = [1]
 channels = [32.0]
+GLOBAL_HEIGHT_POS = 1.8
 
 x = [
     [0.0]
@@ -23,7 +24,7 @@ y = [
 ]
 
 z = [
-    [1.80]
+    [1.8]
 ]
 
 roll = [

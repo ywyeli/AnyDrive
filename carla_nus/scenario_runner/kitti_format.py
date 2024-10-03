@@ -21,7 +21,7 @@
 
 from typing import List
 from math import pi
-from constants import CAMERA_IMAGE_X, CAMERA_IMAGE_Y, CAMERA_HEIGHT_POS
+
 
 class KittiDescriptor:
     # This class is responsible for storing a single datapoint for the kitti 3d object detection task
@@ -109,7 +109,7 @@ class KittiDescriptor:
         x, y, z = [float(x) for x in obj_location][0:3]
         assert None not in [
             self.extent, self.type], "Extent and type must be set before location!"
-        # y -= CAMERA_HEIGHT_POS / 2
+
         if self.type == "pedestrian":
             # Since the midpoint/location of the car is in the middle of the agent, while for pedestrian it is at the bottom
             y -= self.extent[0]

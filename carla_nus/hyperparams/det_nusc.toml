@@ -13,6 +13,7 @@ upper_fov = 2.0
 sets = 1
 num = [2]
 channels = [32.0]
+GLOBAL_HEIGHT_POS = 1.8
 
 x = [
     [0.20, -1.20]

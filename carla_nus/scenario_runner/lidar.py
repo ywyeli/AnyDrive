@@ -8,7 +8,7 @@ sys.path.append(
 import toml
 import carla
 
-from constants import CAMERA_IMAGE_X, CAMERA_IMAGE_Y, CAMERA_HEIGHT_POS, MAX_RENDER_DEPTH_IN_METERS
+from constants import CAMERA_IMAGE_X, CAMERA_IMAGE_Y, MAX_RENDER_DEPTH_IN_METERS
 # from constants import *
 
 
@@ -101,6 +101,7 @@ class Sensor(object):
     def __init__(self, param_file, lidars):
         self.lidars = lidars
         self.cams = toml.load(f"../hyperparams/{param_file}")['camera']
+        self.lids = toml.load(f"../hyperparams/{param_file}")['lidar']
 
     def create_sensor_spec(self):
         """
@@ -127,7 +128,7 @@ class Sensor(object):
         camera_spec['height'] = str(CAMERA_IMAGE_Y)
         camera_spec["fov"] = str(90.0)
         camera_spec['id'] = "camera01"
-        camera_spec['x'], camera_spec['y'], camera_spec['z'] = 0.0, 0.0, CAMERA_HEIGHT_POS
+        camera_spec['x'], camera_spec['y'], camera_spec['z'] = 0.0, 0.0, self.lids['GLOBAL_HEIGHT_POS']
         camera_spec['roll'], camera_spec['pitch'], camera_spec['yaw'] = 0.0, 0.0, 0.0
         camera_spec['type'] = 'sensor.camera.rgb'
         camera_spec['motion_blur_intensity'] = 0
@@ -197,7 +198,7 @@ class Sensor(object):
         depth_camera_spec["height"] = str(CAMERA_IMAGE_Y)
         depth_camera_spec["fov"] = str(90.0)
         depth_camera_spec['id'] = "depth01"
-        depth_camera_spec['x'], depth_camera_spec['y'], depth_camera_spec['z'] = 0.0, 0.0, CAMERA_HEIGHT_POS
+        depth_camera_spec['x'], depth_camera_spec['y'], depth_camera_spec['z'] = 0.0, 0.0, self.lids['GLOBAL_HEIGHT_POS']
         depth_camera_spec['roll'], depth_camera_spec['pitch'], depth_camera_spec['yaw'] = 0.0, 0.0, 0.0
         depth_camera_spec['type'] = "sensor.camera.depth"
         depth_camera_spec['motion_blur_intensity'] = 0

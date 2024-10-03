@@ -19,7 +19,7 @@ import psutil
 import time
 import math
 
-LIDAR_HEIGHT_POS = 1.50
+
 
 
 # Function to set CPU affinity
@@ -334,7 +334,8 @@ def create_calibrated_sensor_json(calibrated_sensor_json, sensor_list, args):
 
     params = toml.load(f"../carla_nus/hyperparams/{args.hyperparams}")
 
-    param = params['camera']
+    lids = params['lidar']
+    LIDAR_HEIGHT_POS = lids['GLOBAL_HEIGHT_POS']
 
     create_sensor_token = None
     create_calibrated_sensor_token = None
@@ -424,7 +425,11 @@ def nuread(pathh, path_position, path_timestamp, root_path, scene_numbers, args)
     instances = {}
 
     instance_token = 0
-    
+
+    params = toml.load(f"../carla_nus/hyperparams/{args.hyperparams}")
+
+    lids = params['lidar']
+    LIDAR_HEIGHT_POS = lids['GLOBAL_HEIGHT_POS']
 
     sensor_list = ['LIDAR_TOP', 'CAM_BACK', 'CAM_BACK_LEFT', 'CAM_BACK_RIGHT',
                    'CAM_FRONT', 'CAM_FRONT_LEFT', 'CAM_FRONT_RIGHT']
