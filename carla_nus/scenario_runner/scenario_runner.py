@@ -1339,6 +1339,9 @@ class ScenarioRunner(object):
 
             instance_id = agent.id
 
+            velocity = agent.get_velocity()
+            speed = math.sqrt(velocity.x ** 2 + velocity.y ** 2 + velocity.z ** 2)
+
             datapoint = KittiDescriptor()
             datapoint.set_occlusion(occluded)
             datapoint.set_truncated(truncated)
@@ -1349,6 +1352,7 @@ class ScenarioRunner(object):
             datapoint.set_3d_object_location(midpoint)
             datapoint.set_rotation_y(rotation_y)
             datapoint.set_instance(instance_id)
+            datapoint.set_speed(speed)
 
         return datapoint
 

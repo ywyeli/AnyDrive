@@ -70,6 +70,7 @@ def parse_line(line):
     location = list(map(float, parts[11:14]))  # x, y, z
     rotation_yaw = float(parts[14])
     instance_id = int(parts[15])
+    speed = float(parts[-1])
 
     return {
         'type': obj_type,
@@ -80,7 +81,8 @@ def parse_line(line):
         'dimensions': dimensions,
         'location': location,
         'rotation_yaw': rotation_yaw,
-        'instance_id': instance_id
+        'instance_id': instance_id,
+        'speed': speed
     }
 
 
@@ -92,7 +94,7 @@ def save_valid_bboxes(valid_objects, output_file_path):
                    f"{obj['bbox_2d'][0]} {obj['bbox_2d'][1]} {obj['bbox_2d'][2]} {obj['bbox_2d'][3]} " \
                    f"{obj['dimensions'][0]} {obj['dimensions'][1]} {obj['dimensions'][2]} " \
                    f"{obj['location'][0]} {obj['location'][1]} {obj['location'][2]} " \
-                   f"{obj['rotation_yaw']} {obj['instance_id']}\n"
+                   f"{obj['rotation_yaw']} {obj['instance_id']} {obj['speed']}\n"
             file.write(line)
             valid_bbox = create_bbox(obj)
             valid_bboxes.append(valid_bbox)
