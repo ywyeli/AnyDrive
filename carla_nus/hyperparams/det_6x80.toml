@@ -15,7 +15,7 @@ num = [2]
 channels = [32.0]
 
 x = [
-    [0.0, 0.0]
+    [0.4, -1.2]
 ]
 
 y = [
@@ -23,7 +23,7 @@ y = [
 ]
 
 z = [
-    [1.50, 1.70]
+    [1.50, 1.50]
 ]
 
 roll = [
@@ -37,32 +37,26 @@ pitch = [
 
 [camera]
 
-T_CAM_FRONT = [0.0, 0.0, 1.6]
+T_CAM_FRONT = [0.39, 0.0, 1.5]
 R_CAM_FRONT = [0.0, 0.0, 0.0]
-FOV_CAM_FRONT = 60.0
 
 
-T_CAM_FRONT_LEFT = [0.0, 0.0, 1.6]
+T_CAM_FRONT_LEFT = [0.2, -0.4, 1.5]
 R_CAM_FRONT_LEFT = [0.0, 0.0, -60.0]
-FOV_CAM_FRONT_LEFT = 60.0
 
 
-T_CAM_FRONT_RIGHT = [0.0, 0.0, 1.6]
+T_CAM_FRONT_RIGHT = [0.2, 0.4, 1.5]
 R_CAM_FRONT_RIGHT = [0.0, 0.0, 60.0]
-FOV_CAM_FRONT_RIGHT = 60.0
 
 
-T_CAM_BACK = [0.0, 0.0, 1.6]
+T_CAM_BACK = [-1.2, 0.0, 1.5]
 R_CAM_BACK = [0.0, 0.0, 180.0]
-FOV_CAM_BACK = 60.0
 
 
-T_CAM_BACK_LEFT = [0.0, 0.0, 1.6]
+T_CAM_BACK_LEFT = [-0.4, -0.6, 1.5]
 R_CAM_BACK_LEFT = [0.0, 0.0, -120.0]
-FOV_CAM_BACK_LEFT = 60.0
 
 
-T_CAM_BACK_RIGHT = [0.0, 0.0, 1.6]
+T_CAM_BACK_RIGHT = [-0.4, 0.6, 1.5]
 R_CAM_BACK_RIGHT = [0.0, 0.0, 120.0]
-FOV_CAM_BACK_RIGHT = 60.0
 
